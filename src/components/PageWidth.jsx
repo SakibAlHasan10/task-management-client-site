@@ -1,7 +1,7 @@
 
 const PageWidth = ({children}) => {
     return (
-        <div className="max-w-screen-xl mx-auto">
+        <div className="max-w-screen-xl mx-auto px-8">
             {children}
         </div>
     );
