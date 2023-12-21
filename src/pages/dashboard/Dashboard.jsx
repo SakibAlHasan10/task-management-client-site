@@ -1,28 +1,29 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import PageWidth from "../../components/PageWidth";
 
 const route = (
-  <>
-    <NavLink>
-      <li>Home</li>
-    </NavLink>
-    <NavLink>
-      <li>About</li>
-    </NavLink>
-    <NavLink>
-      <li>contact</li>
-    </NavLink>
-  </>
-);
-
-const Home = () => {
-  return (
-    <div>
-      <div className="drawer">
+    <>
+      <NavLink>
+        <li>Home</li>
+      </NavLink>
+      <NavLink>
+        <li>About</li>
+      </NavLink>
+      <NavLink>
+        <li>contact</li>
+      </NavLink>
+    </>
+  );
+const Dashboard = () => {
+    return (
+        <div>
+            <div className="drawer">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
           {/* Navbar */}
-          <div className="w-full navbar bg-[#2A2E35]">
+          <div className="w-full z-50 navbar bg-[#2A2E35]">
+            <PageWidth>
+
             <div className="flex-none lg:hidden">
               <label
                 htmlFor="my-drawer-3"
@@ -44,33 +45,31 @@ const Home = () => {
                 </svg>
               </label>
             </div>
-            <div className="flex-1 px-2 mx-2 text-[#5088E9] text-3xl font-bold">
-              our<span className="text-[#ff625e]">Task</span>
+            <div className="flex-1  text-[#5088E9] text-3xl font-bold">
+              <h2>Dashboard</h2>
             </div>
-            <div className=" flex-none hidden lg:block">
-              <ul className="menu menu-horizontal gap-6">
-                {/* Navbar menu content here */}
-                {route}
-              </ul>
-            </div>
+            </PageWidth>
           </div>
           {/* Page content here */}
           <PageWidth>
             
-          <div className="flex justify-center items-center min-h-[80vh]">
+          <div className="flex min-h-[89vh] justify-between bg-white w-full">
             <div>
-                <h2 className="text-4xl font-extrabold">Continue your task </h2>
-                <div className="w-full text-center mt-8">
+            <ul className="menu mr-6 hidden lg:block p-4 w-52 min-h-[89vh] bg-base-200">
+            {/* Sidebar content here */}
+                <img src="" alt="" />
+                <h3>name</h3>
+            {route}
+          </ul>
+            </div>
+            <div>
 
-            <Link to={"/signin"}>
-              <button className="btn bg-[#09C372] text-white font-semibold text-2xl hover:bg-white hover:text-black">Let&apos;s Explore</button>
-            </Link>
-                </div>
-          </div>
+            <Outlet/>
+            </div>
             </div>
           </PageWidth>
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side flex-none">
           <label
             htmlFor="my-drawer-3"
             aria-label="close sidebar"
@@ -82,8 +81,8 @@ const Home = () => {
           </ul>
         </div>
       </div>
-    </div>
-  );
+        </div>
+    );
 };
 
-export default Home;
+export default Dashboard;
