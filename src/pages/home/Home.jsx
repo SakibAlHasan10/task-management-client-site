@@ -70,7 +70,7 @@ const Home = () => {
         </div>
       </div>
       <div>
-        <Link>
+        <Link to={"/signin"}>
         <button>Let&apos;s Explore</button>
         </Link>
       </div>

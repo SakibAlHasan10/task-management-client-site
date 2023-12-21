@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Social from "../../Sheare/SocialResigter/Social";
-import useApi from "../../AuthApi/useApi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { updateProfile } from "firebase/auth";
 import { Helmet } from "react-helmet";
+import useApi from "../../hooks/AuthApi/useApi";
 
 const SignUp = () => {
   const [visible, setVisible] = useState(true);
@@ -169,7 +169,7 @@ const SignUp = () => {
               <p className="text-center mt-6">
                 Already a Member?{" "}
                 <Link
-                  to={"/login"}
+                  to={"/signin"}
                   className="text-orange-400 hover:text-green-600"
                 >
                   Login

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Social from "../../Sheare/SocialResigter/Social";
-import useApi from "../../AuthApi/useApi";
 import { ToastContainer, toast } from "react-toastify";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import "react-toastify/dist/ReactToastify.css";
 import { Helmet } from "react-helmet";
+import useApi from "../../hooks/AuthApi/useApi";
 
 const SignIn = () => {
   const [errorText, setErrorText] = useState("");
@@ -98,7 +98,7 @@ const SignIn = () => {
               <p className="text-center mt-4">
                 Not a Member?{" "}
                 <Link
-                  to={"/sign-up"}
+                  to={"/signup"}
                   className="text-orange-400 hover:text-green-600"
                 >
                   Signup
