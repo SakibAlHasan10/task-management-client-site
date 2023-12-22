@@ -46,7 +46,7 @@ useEffect(()=>{
         // console.log(currentUser?.email)
         if(currentUser){
             const loggedUser = {email:currentUser.email}
-            axios.post('http://localhost:5000/jwt',loggedUser, {withCredentials: true} )
+            axios.post('https://task-management-server-site-blush.vercel.app/jwt',loggedUser, {withCredentials: true} )
             .then(res=>{
                 console.log(res.data,'jwt')
             })

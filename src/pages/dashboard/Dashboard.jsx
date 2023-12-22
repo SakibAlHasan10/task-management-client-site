@@ -59,7 +59,7 @@ const Dashboard = () => {
           {/* Page content here */}
           <PageWidth>
             
-          <div className="flex min-h-[89vh] justify-between bg-white w-full">
+          <div className="flex min-h-[89vh] justify-between w-full">
             <div className="menu mr-6 hidden lg:block p-4 w-60 min-h-[89vh] bg-base-200">
               <div className="border-b-2 border-dotted mb-6 ">
               {

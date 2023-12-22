@@ -50,7 +50,7 @@ const SignUp = () => {
           photoURL: photo,
         })
           .then(() => {
-            fetch("http://localhost:5000/users", {
+            fetch("https://task-management-server-site-blush.vercel.app/users", {
               method: "POST",
               headers: {
                 "content-type": "application/json",
