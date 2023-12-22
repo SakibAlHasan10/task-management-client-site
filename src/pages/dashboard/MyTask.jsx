@@ -1,4 +1,19 @@
+import { useEffect, useState } from "react";
+import usePrivate from "../../hooks/private/usePrivate";
+import useApi from "../../hooks/AuthApi/useApi";
+
 const MyTask = () => {
+    const user = useApi()
+    const [data, setData] = useState()
+    const email = user?.user?.email;
+    const axiosPrivate = usePrivate()
+    useEffect(()=>{
+        axiosPrivate.get(`/task?owner=${email}` )
+        .then(res=>{
+            setData(res.data)
+        })
+    },[axiosPrivate, email])
+    console.log(data)
   return (
     <div className="w-full">
       <div className="overflow-x-auto w-full">
@@ -16,26 +31,15 @@ const MyTask = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            <tr>
-              <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Blue</td>
-            </tr>
-            {/* row 2 */}
-            <tr>
-              <th>2</th>
-              <td>Hart Hagerty</td>
-              <td>Desktop Support Technician</td>
-              <td>Purple</td>
-            </tr>
-            {/* row 3 */}
-            <tr>
-              <th>3</th>
-              <td>Brice Swyre</td>
-              <td>Tax Accountant</td>
-              <td>Red</td>
-            </tr>
+            {
+                data?.map((ts, idx)=><tr key={ts._id}>
+                    <th>{idx+1}</th>
+                    <td>{ts?.data?.TaskTitle}</td>
+                    <td>{ts?.data?.StartDate}</td>
+                    <td>{ts?.data?.EndDate}</td>
+                  </tr>)
+            }
+            
           </tbody>
         </table>
       </div>

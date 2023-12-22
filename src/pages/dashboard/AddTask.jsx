@@ -11,31 +11,28 @@ const AddTask = () => {
     const user = useApi()
     const navigate = useNavigate()
 //   console.log(data)
-const handleSubmitTask =()=>{
-// e.preventDefault()
-
-const dataDoc = {
-    owner : user?.user?.email,
-    data,
-}
-console.log(data)
-// console.log(user?.user?.email)
-    // fetch("http://localhost:5000/task", {
-    //           method: "POST",
-    //           headers: {
-    //             "content-type": "application/json",
-    //           },
-    //           body: JSON.stringify(dataDoc),
-    //         })
-    //           .then((res) => res.json())
-    //           .then((data) => {
-    //             if (data.insertedId) {
-    //               toast.success("your signup successful", {
-    //                 position: toast.POSITION.TOP_RIGHT,
-    //               });
-    //             }
-    //             navigate("/dashboard");
-    //           });
+const email = user?.user?.email;
+console.log(data==[])
+if(!data==[]){
+  console.log(!data==[],'trueeeeeeeeeeee')
+  setData("")
+fetch("http://localhost:5000/task", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({owner:email, data}),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              toast.success("your signup successful", {
+                position: toast.POSITION.TOP_RIGHT,
+              });
+            }
+            navigate("/dashboard");
+            return
+          });
 }
     return (
         <div className="w-full px-5">
@@ -44,7 +41,7 @@ console.log(data)
           <div className="w-full mt-4">
 
           <span className=" text-white">Task Title</span>
-          <input {...register("Task Title", { required: true })} placeholder="Task Title" className="w-full h-12 rounded-lg mt-2 px-4 "/> 
+          <input {...register("TaskTitle", { required: true })} placeholder="Task Title" className="w-full h-12 rounded-lg mt-2 px-4 "/> 
           </div>
           <div className="w-full mt-4">
 
@@ -60,12 +57,12 @@ console.log(data)
             <div className="w-full mt-4">
           <span>Start Date</span>
 
-          <input type="date" {...register("Start Date", { required: true })} placeholder="Start Date" className=" w-full h-12 rounded-lg mt-2 px-4" />
+          <input type="date" {...register("StartDate", { required: true })} placeholder="Start Date" className=" w-full h-12 rounded-lg mt-2 px-4" />
             </div>
             <div className="w-full mt-4">
 
           <span>End Date</span>
-          <input type="date" {...register("End Date", { required: true })} placeholder="End Date" className=" w-full h-12 rounded-lg mt-2 px-4" />
+          <input type="date" {...register("EndDate", { required: true })} placeholder="End Date" className=" w-full h-12 rounded-lg mt-2 px-4" />
             </div>
           </div>
           <div className="mt-4">
@@ -74,7 +71,7 @@ console.log(data)
           <textarea {...register("Descriptions", { required: true })} placeholder="Descriptions" className=" w-full h-12 rounded-lg mt-2 px-4"/>
           </div>
           {/* <p>{data}</p> */}
-          <input type="submit" onClick={()=>handleSubmitTask()} className=" w-full h-12 rounded-lg mt-6 px-4 bg-white text-black"/>
+          <input type="submit" className="cursor-pointer w-full h-12 rounded-lg mt-6 px-4 bg-white text-black"/>
         </form>
         </div>
       );
