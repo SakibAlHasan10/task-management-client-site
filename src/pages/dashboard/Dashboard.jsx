@@ -1,5 +1,6 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import PageWidth from "../../components/PageWidth";
+import useApi from "../../hooks/AuthApi/useApi";
 
 const route = (
     <>
@@ -15,6 +16,11 @@ const route = (
     </>
   );
 const Dashboard = () => {
+  const { user, logOut } = useApi();
+  // console.log(user)
+  const userLogout=()=>{
+    logOut()
+  }
     return (
         <div>
             <div className="drawer">
@@ -54,12 +60,23 @@ const Dashboard = () => {
           <PageWidth>
             
           <div className="flex min-h-[89vh] justify-between bg-white w-full">
-            <div>
-            <ul className="menu mr-6 hidden lg:block p-4 w-52 min-h-[89vh] bg-base-200">
+            <div className="menu mr-6 hidden lg:block p-4 w-60 min-h-[89vh] bg-base-200">
+              <div className="border-b-2 border-dotted mb-6 ">
+              {
+              user&&<>
+                <img src={user?.photoURL} alt={user?.displayName} className="w-28 rounded-full ml-8" />
+                <h3 className="text-center mt-5 text-xl font-semibold">{user?.displayName}</h3>
+                <h3 className="text-center mt-1 text-md font-semibold pb-4">{(user?.email.length>20)? user?.email.slice(0,19)+ "...":user?.email}</h3>
+              </>
+            } 
+              </div>
+            <ul>
             {/* Sidebar content here */}
-                <img src="" alt="" />
-                <h3>name</h3>
+            
             {route}
+            <Link>
+            <button className="btn" onClick={()=>userLogout()}>Logout</button>
+            </Link>
           </ul>
             </div>
             <div className="flex justify-center items-center w-full">
@@ -75,12 +92,26 @@ const Dashboard = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu p-4 w-52 mt-14 min-h-full bg-base-200">
+          <div className="menu p-4 w-52 mt-14 min-h-full bg-base-200">
+              <div className="border-b-2 border-dotted mb-6 ">
+              {
+              user&&<>
+                <img src={user?.photoURL} alt={user?.displayName} className="w-28 rounded-full ml-8" />
+                <h3 className="text-center mt-5 text-xl font-semibold">{user?.displayName}</h3>
+                <h3 className="text-center mt-1 text-md font-semibold pb-4">{(user?.email.length>20)? user?.email.slice(0,19)+ "...":user?.email}</h3>
+              </>
+            }
+              </div>
+            <ul>
             {/* Sidebar content here */}
-            <img src="" alt="" />
-                <h3>name</h3>
+            
             {route}
+            <Link>
+            <button className="btn" onClick={()=>userLogout()}>Logout</button>
+            </Link>
           </ul>
+            </div>
+            
         </div>
       </div>
         </div>
