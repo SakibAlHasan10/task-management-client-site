@@ -4,15 +4,41 @@ import useApi from "../../hooks/AuthApi/useApi";
 
 const route = (
     <>
-      <NavLink to={"/dashboard/addtask"}>
+    <NavLink
+      to={`/dashboard`}
+      className={({ isActive, isPending }) =>
+        isActive
+          ? "active text-[#ff625e] border-b mb-5 text-lg border-[#ff625e]"
+          : isPending
+          ? "pending"
+          : "mb-5 lg:mb-0 hover:text-[#ff625e] text-lg hover:border-b border-[#ff625e]"
+      }
+      >
+        <li>Dashboard</li>
+      </NavLink>
+      <NavLink to={"/dashboard/addtask"}
+      className={({ isActive, isPending }) =>
+        isActive
+          ? "active text-[#ff625e] border-b mb-5 text-lg border-[#ff625e]"
+          : isPending
+          ? "pending"
+          : "mb-5 lg:mb-0 hover:text-[#ff625e] text-lg hover:border-b border-[#ff625e]"
+      }
+      >
         <li>Add Task</li>
       </NavLink>
-      <NavLink to={"/dashboard/mytask"}>
+      <NavLink to={`/dashboard/mytask`}
+    className={({ isActive, isPending }) =>
+      isActive
+        ? "active text-[#ff625e] border-b mb-5 text-lg border-[#ff625e]"
+        : isPending
+        ? "pending"
+        : "mb-5 lg:mb-0 hover:text-[#ff625e] text-lg hover:border-b border-[#ff625e]"
+    }
+      >
         <li>My Task</li>
       </NavLink>
-      <NavLink>
-        <li>Logout</li>
-      </NavLink>
+      
     </>
   );
 const Dashboard = () => {
@@ -79,7 +105,7 @@ const Dashboard = () => {
             </Link>
           </ul>
             </div>
-            <div className="flex justify-center items-center w-full">
+            <div className="flex justify-center items-start w-full">
 
             <Outlet/>
             </div>
@@ -106,10 +132,8 @@ const Dashboard = () => {
             {/* Sidebar content here */}
             
             {route}
-            <Link>
-            <button className="btn" onClick={()=>userLogout()}>Logout</button>
-            </Link>
           </ul>
+            <button className="btn-xs bg-red-600 text-white" onClick={()=>userLogout()}>Logout</button>
             </div>
             
         </div>

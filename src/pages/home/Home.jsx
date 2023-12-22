@@ -3,15 +3,42 @@ import PageWidth from "../../components/PageWidth";
 
 const route = (
   <>
-    <NavLink>
+    <NavLink
+    to={`/`}
+    className={({ isActive, isPending }) =>
+      isActive
+        ? "active text-[#ff625e] border-b mb-3 lg:mb-0 text-lg border-[#ff625e]"
+        : isPending
+        ? "pending"
+        : "mb-3 lg:mb-0 hover:text-[#ff625e] text-lg hover:border-b border-[#ff625e]"
+    }
+
+    >
       <li>Home</li>
     </NavLink>
-    <NavLink>
+    <NavLink to={`/people`}
+    className={({ isActive, isPending }) =>
+      isActive
+        ? "active text-[#ff625e] mb-3 border-b lg:mb-0 text-lg border-[#ff625e]"
+        : isPending
+        ? "pending"
+        : "mb-3 lg:mb-0 hover:text-[#ff625e] text-lg hover:border-b border-[#ff625e]"
+    }
+    >
+      <li>People</li>
+    </NavLink>
+    <NavLink to={`/about`}
+    className={({ isActive, isPending }) =>
+      isActive
+        ? "active text-[#ff625e] border-b mb-3 lg:mb-0 text-lg border-[#ff625e]"
+        : isPending
+        ? "pending"
+        : "mb-3 lg:mb-0 hover:text-[#ff625e] text-lg hover:border-b border-[#ff625e]"
+    }
+    >
       <li>About</li>
     </NavLink>
-    <NavLink>
-      <li>contact</li>
-    </NavLink>
+    
   </>
 );
 
@@ -86,7 +113,7 @@ const Home = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu p-4 w-52 min-h-full bg-base-200">
+          <ul className="menu p-4 mt-16 w-52 min-h-full bg-base-200">
             {/* Sidebar content here */}
             {route}
           </ul>
