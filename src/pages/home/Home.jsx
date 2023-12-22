@@ -23,6 +23,8 @@ const Home = () => {
         <div className="drawer-content flex flex-col">
           {/* Navbar */}
           <div className="w-full navbar bg-[#2A2E35]">
+            <div className="w-full">
+
             <div className="flex-none lg:hidden">
               <label
                 htmlFor="my-drawer-3"
@@ -44,6 +46,8 @@ const Home = () => {
                 </svg>
               </label>
             </div>
+            <div className="flex justify-between w-full mx-auto max-w-screen-xl ">
+
             <div className="flex-1 px-2 mx-2 text-[#5088E9] text-3xl font-bold">
               our<span className="text-[#ff625e]">Task</span>
             </div>
@@ -53,15 +57,18 @@ const Home = () => {
                 {route}
               </ul>
             </div>
+            </div>
+
+            </div>
           </div>
           {/* Page content here */}
           <PageWidth>
             <div className="flex justify-center text-center items-center min-h-[90vh]">
               <div>
-                <h2 className="text-5xl font-extrabold">
+                <h2 className="text-2xl md:text-4xl lg:text-5xl font-extrabold">
                   ONLINE TASK MANAGEMENT
                 </h2>
-                    <p className="text-md font-medium w-7/12 mx-auto mt-4">Organize and manage your team like a boss with ourTask, a free task management tool packing more capabilities than you can imagine.</p>
+                    <p className="text-md font-medium w-11/12 md:w-9/12 lg:w-7/12 mx-auto mt-4">Organize and manage your team like a boss with ourTask, a free task management tool packing more capabilities than you can imagine.</p>
                 <div className="w-full text-center mt-8">
                   <Link to={"/signin"}>
                     <button className="btn bg-[#09C372] text-white font-semibold text-2xl hover:bg-white hover:text-black">
