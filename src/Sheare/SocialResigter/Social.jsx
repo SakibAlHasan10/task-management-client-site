@@ -7,8 +7,8 @@ const Social = () => {
   const handleLoginWithGoogle =()=>{
     createAccountWithGoogle()
     .then(result =>{
-      console.log(result.user)
-      navigate('/')
+      // console.log(result.user)
+      result && navigate('/dashboard')
     })
     .catch(error=>{
       console.error(error)
@@ -18,7 +18,7 @@ const Social = () => {
     createAccountWithGitHub()
     .then(result =>{
       console.log(result.user)
-      navigate('/')
+      navigate('/dashboard')
     })
     .catch(error=>{
       console.error(error)

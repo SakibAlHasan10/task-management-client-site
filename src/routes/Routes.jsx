@@ -5,6 +5,9 @@ import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
 import Dashboard from "../pages/dashboard/Dashboard";
 import Profile from "../pages/dashboard/Profile";
+import AddTask from "../pages/dashboard/AddTask";
+import Update from "../pages/dashboard/Update";
+import MyTask from "../pages/dashboard/mytask";
 
 const routes = createBrowserRouter([
 {
@@ -32,6 +35,18 @@ const routes = createBrowserRouter([
         {
             path:"",
             element:<Profile/>
+        },
+        {
+            path:"addtask",
+            element:<AddTask/>
+        },
+        {
+            path:"mytask",
+            element:<MyTask/>
+        },
+        {
+            path:"update",
+            element:<Update/>
         }
     ]
 }

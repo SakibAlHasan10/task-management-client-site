@@ -64,7 +64,7 @@ const SignUp = () => {
                     position: toast.POSITION.TOP_RIGHT,
                   });
                 }
-                navigate("/");
+                navigate("/dashboard");
                 // console.log(data);
               });
           })
