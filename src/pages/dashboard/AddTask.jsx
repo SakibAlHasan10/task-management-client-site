@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import useApi from "../../hooks/AuthApi/useApi";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const AddTask = () => {
     const { register, handleSubmit } = useForm();
@@ -12,7 +13,7 @@ const AddTask = () => {
     const navigate = useNavigate()
 //   console.log(data)
 const email = user?.user?.email;
-console.log(data==[])
+// console.log(data==[])
 if(!data==[]){
   console.log(!data==[],'trueeeeeeeeeeee')
   setData("")
@@ -36,6 +37,9 @@ fetch("http://localhost:5000/task", {
 }
     return (
         <div className="w-full px-5">
+          <Helmet>
+        <title>Add Task || ourTask</title>
+      </Helmet>
 {/* (JSON.stringify(data)) */}
         <form onSubmit={handleSubmit((data) => setData(data))}>
           <div className="w-full mt-4">

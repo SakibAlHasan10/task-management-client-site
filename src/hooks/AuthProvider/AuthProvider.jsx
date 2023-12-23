@@ -47,8 +47,8 @@ useEffect(()=>{
         if(currentUser){
             const loggedUser = {email:currentUser.email}
             axios.post('http://localhost:5000/jwt',loggedUser, {withCredentials: true} )
-            .then(res=>{
-                console.log(res.data,'jwt')
+            .then(()=>{
+                // console.log(res.data,'jwt')
             })
         }
     })
