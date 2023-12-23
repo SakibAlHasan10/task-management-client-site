@@ -24,7 +24,7 @@ const SignIn = () => {
           position: toast.POSITION.TOP_RIGHT,
         });
         // console.log(res.user);
-        navigate("/");
+        navigate("/dashboard");
       })
       .catch((error) => {
         if (error) {
@@ -36,7 +36,7 @@ const SignIn = () => {
   return (
     <div>
       <Helmet>
-      <title>Login || TidalWave</title>
+      <title>Login || ourTask</title>
       </Helmet>
       <ToastContainer />
       <div className="hero min-h-screen">

@@ -7,7 +7,9 @@ import Dashboard from "../pages/dashboard/Dashboard";
 import Profile from "../pages/dashboard/Profile";
 import AddTask from "../pages/dashboard/AddTask";
 import Update from "../pages/dashboard/Update";
-import MyTask from "../pages/dashboard/mytask";
+import People from "../pages/people/People";
+import About from "../pages/about/About";
+import MyTask from "../pages/dashboard/MyTask";
 
 const routes = createBrowserRouter([
 {
@@ -25,6 +27,14 @@ const routes = createBrowserRouter([
         {
             path:"/signup",
             element:<SignUp/>
+        },
+        {
+            path:"/people",
+            element:<People/>
+        },
+        {
+            path:"/about",
+            element:<About/>
         }
     ]
 },

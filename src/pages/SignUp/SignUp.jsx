@@ -83,7 +83,7 @@ const SignUp = () => {
   return (
     <div>
       <Helmet>
-      <title>SignUp || TidalWave</title>
+      <title>SignUp || outTask</title>
       </Helmet>
       <ToastContainer />
       <div className="hero min-h-screen">

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import usePrivate from "../../hooks/private/usePrivate";
 import useApi from "../../hooks/AuthApi/useApi";
 import { FaTrashCan } from "react-icons/fa6";
+import { Helmet } from "react-helmet";
 const MyTask = () => {
   const user = useApi();
   const [data, setData] = useState();
@@ -15,6 +16,9 @@ const MyTask = () => {
   console.log(data);
   return (
     <div className="w-full">
+      <Helmet>
+      <title>My Task || ourTask</title>
+      </Helmet>
       <div className="overflow-x-auto w-full">
         <table className="table table-zebra">
           {/* head */}
