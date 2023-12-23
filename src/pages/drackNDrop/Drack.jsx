@@ -2,42 +2,71 @@ import { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "./Drack.css";
 import StoreLeft from "./StoreLeft";
-
-const DATA = [
-  {
-    id: "0e2f0db1-5457-46b0-949e-8032d2f9997a",
-    name: "To-Do",
-    items: [
-      { id: "26fd50b3-3841-496e-8b32-73636f6f4197", name: "3% Milk" },
-      { id: "b0ee9d50-d0a6-46f8-96e3-7f3f0f9a2525", name: "Butter" },
-    ],
-    tint: 1,
-  },
-  {
-    id: "487f68b4-1746-438c-920e-d67b7df46247",
-    name: "Indigo",
-    items: [
-      {
-        id: "95ee6a5d-f927-4579-8c15-2b4eb86210ae",
-        name: "Designing Data Intensive Applications",
-      },
-      { id: "5bee94eb-6bde-4411-b438-1c37fa6af364", name: "Atomic Habits" },
-    ],
-    tint: 2,
-  },
-  {
-    id: "25daffdc-aae0-4d73-bd31-43f73101e7c0",
-    name: "Lowes",
-    items: [
-      { id: "960cbbcf-89a0-4d79-aa8e-56abbc15eacc", name: "Workbench" },
-      { id: "d3edf796-6449-4931-a777-ff66965a025b", name: "Hammer" },
-    ],
-    tint: 3,
-  },
-];
+import usePrivate from "../../hooks/private/usePrivate";
+import useApi from "../../hooks/AuthApi/useApi";
+// import { Helmet } from "react-helmet";
+import { useQuery } from "@tanstack/react-query";
+// const DATA = [
+//   {
+//     id: "0e2f0db1-5457-46b0-949e-8032d2f9997a",
+//     name: "To-Do",
+//     items: [
+//       { id: "26fd50b3-3841-496e-8b32-73636f6f4197", name: "3% Milk" },
+//       { id: "b0ee9d50-d0a6-46f8-96e3-7f3f0f9a2525", name: "Butter" },
+//     ],
+//     tint: 1,
+//   },
+//   {
+//     id: "487f68b4-1746-438c-920e-d67b7df46247",
+//     name: "Indigo",
+//     items: [
+//       {
+//         id: "95ee6a5d-f927-4579-8c15-2b4eb86210ae",
+//         name: "Designing Data Intensive Applications",
+//       },
+//       { id: "5bee94eb-6bde-4411-b438-1c37fa6af364", name: "Atomic Habits" },
+//     ],
+//     tint: 2,
+//   },
+//   {
+//     id: "25daffdc-aae0-4d73-bd31-43f73101e7c0",
+//     name: "Lowes",
+//     items: [
+//       { id: "960cbbcf-89a0-4d79-aa8e-56abbc15eacc", name: "Workbench" },
+//       { id: "d3edf796-6449-4931-a777-ff66965a025b", name: "Hammer" },
+//     ],
+//     tint: 3,
+//   },
+// ];
 
 const Drack = () => {
-  const [stores, setStores] = useState(DATA);
+  const user = useApi();
+  const email = user?.user?.email;
+  const axiosPrivate = usePrivate();
+  const [stores, setStores] = useState([]);
+  const {
+    isPending,
+    error,
+    data: DATA = [],
+    // refetch,
+  } = useQuery({
+    queryKey: ["taskM"],
+    queryFn: () =>
+      axiosPrivate.get(`/task?owner=${email}`).then((res) => {
+        setStores(res?.data);
+        return res?.data
+      }),
+  });
+  stores?.map((store) => console.log(store))
+  // console.log(stores)
+  if (isPending) return "Loading...";
+  if (error) return "An error has occurred: " + error.message;
+  // const tasks =[
+  //   {
+  //     name:"To-Do",
+
+  //   }
+  //   ,"Processing", "Completed"]
   const handleDragDrop=(results)=>{
     const {source, destination, type} = results;
     if(!destination) return;
@@ -67,31 +96,36 @@ const Drack = () => {
   }
   return (
     <div className="layout_wrapper text-black">
-      <div className="card">
+      <div className="card ">
         <DragDropContext
           onDragEnd={handleDragDrop}
         >
           <div className="header">
-            <h1 className="text-2xl">To-DO</h1>
+            <h1 className="text-2xl">Task</h1>
           </div>
-          <Droppable droppableId="ROOT" type="group">
+          <Droppable  droppableId="ROOT" type="group">
             {(provided) => (
+              <div>
+                {/* <h3>To-Do</h3> */}
               <div {...provided.droppableProps} ref={provided.innerRef}>
-                {stores?.map((store, index) => (
-                  <Draggable draggableId={store.id} key={index} index={index}>
+                        <h4>TO-DO</h4>
+                {stores?.map((store, index) =>(
+                  <Draggable draggableId={store._id} key={index} index={index}>
                     {(provided) => (
                       <div
-                        
-                        {...provided.dragHandleProps}
-                        {...provided.draggableProps}
-                        ref={provided.innerRef}
+                      {...provided.dragHandleProps}
+                      {...provided.draggableProps}
+                      ref={provided.innerRef}
                       >
                         <StoreLeft {...store}/>
                       </div>
                     )}
                   </Draggable>
-                ))}
+                )
+                )}
                 {provided.placeholder}
+              </div>
+              {/* <h3>To-Do</h3> */}
               </div>
             )}
           </Droppable>

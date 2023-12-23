@@ -1,15 +1,17 @@
 import { Draggable, Droppable } from "react-beautiful-dnd";
 
-const StoreLeft = ({ name, items, id }) => {
+const StoreLeft = ({ name, data, id }) => {
   return (
     <Droppable droppableId={id}>
       {(provided) => (
         <div {...provided.droppableProps} ref={provided.innerRef}>
           <div className="store-container">
-            <h3>{name}</h3>
+            <h3 className="pb-2 border-b border-white">
+              {data?.TaskTitle}
+            </h3>
           </div>
           <div className="items-container">
-            {items.map((item, index) => (
+            {/* {data.map((item, index) => (
                 <Draggable draggableId={item.id} index={index} key={index}>
                     {(provided)=>(
                         <div className="item-container" {...provided.dragHandleProps}
@@ -18,7 +20,7 @@ const StoreLeft = ({ name, items, id }) => {
                       </div>
                     )}
                 </Draggable>
-            ))}
+            ))} */}
           {provided.placeholder}
           </div>
         </div>

@@ -84,7 +84,6 @@ const Navbar = () => {
               </ul>
             </div>
             </div>
-
             </div>
           </div>
           {/* Page content here */}
